@@ -74,7 +74,7 @@ IF /I "QBuild.sln" NEQ "" (
 )
 
 :: 2. Build to the temporary path
-call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\src\qbuild\Console.csproj" /nologo /verbosity:m /t:Build /p:Configuration=Release;OutputPath="%DEPLOYMENT_TEMP%\app_data\jobs\continuous\deployedJob" /p:SolutionDir="%DEPLOYMENT_SOURCE%\.\\" %SCM_BUILD_ARGS%
+call :ExecuteCmd "%MSBUILD_PATH%" "%DEPLOYMENT_SOURCE%\QBuild.sln" /nologo /verbosity:m /t:Build /p:Configuration=Release;OutputPath="%DEPLOYMENT_TEMP%\app_data\jobs\continuous\deployedJob" %SCM_BUILD_ARGS%
 IF !ERRORLEVEL! NEQ 0 goto error
 
 :: 3. Run web job deploy script
