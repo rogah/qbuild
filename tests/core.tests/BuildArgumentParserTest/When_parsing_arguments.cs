@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using Xunit;
 
 namespace QBuild.Core.Tests.BuildArgumentParserTest
@@ -7,8 +8,8 @@ namespace QBuild.Core.Tests.BuildArgumentParserTest
     {
         private readonly String _helpText = String.Join(String.Empty, new[]
         {
-            "\r\n",
-            "\t", "c:collection", "\t\t", "Collection url (e.g. https://tsf.dell.com:8080/tfs/dfs).", "\n",
+            Environment.NewLine,
+            "\t", "c:collection", "\t\t", "Collection url (e.g. https://tfs.domain.com:8080/tfs/foo).", "\n",
             "\t", "d:definition", "\t\t", "Build definition name (e.g. ProjectName-Relese#).", "\n",
             "\t", "i:interval", "\t\t", "Polling interval in seconds. Default is 5.", "\n",
             "\t", "p:project", "\t\t", "Project name (e.g. Project-Name).", "\n",
@@ -39,17 +40,15 @@ namespace QBuild.Core.Tests.BuildArgumentParserTest
         {
             var arguments = new string[0];
 
-            var expected = String.Join(String.Empty, new[]
-            {
-                "Option 'c:collection' parse error. option is required but was not specified.\r\n",
-                "Option 'p:project' parse error. option is required but was not specified.\r\n",
-                "Option 'd:definition' parse error. option is required but was not specified.\r\n",
-                "Option 'v:version' parse error. option is required but was not specified.\r\n"
-            });
+            var expected = new StringBuilder();
+            expected.AppendLine("Option 'c:collection' parse error. option is required but was not specified.");
+            expected.AppendLine("Option 'p:project' parse error. option is required but was not specified.");
+            expected.AppendLine("Option 'd:definition' parse error. option is required but was not specified.");
+            expected.AppendLine("Option 'v:version' parse error. option is required but was not specified.");
 
             var result = _parser.Parse(arguments);
 
-            Assert.Equal(expected, result.Error);
+            Assert.Equal(expected.ToString(), result.Error);
         }
 
         [Fact]
@@ -67,7 +66,7 @@ namespace QBuild.Core.Tests.BuildArgumentParserTest
         {
             var arguments = new[] { "--project", "foo", "--definition", "bar", "--version", "12345" };
 
-            const string expected = "Option 'c:collection' parse error. option is required but was not specified.\r\n";
+            var expected = new StringBuilder().AppendLine("Option 'c:collection' parse error. option is required but was not specified.").ToString();
 
             var result = _parser.Parse(arguments);
 
@@ -109,7 +108,7 @@ namespace QBuild.Core.Tests.BuildArgumentParserTest
         {
             var arguments = new[] { "--collection", "http://tfs.dell.com:8080/tfs/collection", "--definition", "foo", "--version", "12345" };
 
-            const string expected = "Option 'p:project' parse error. option is required but was not specified.\r\n";
+            var expected = new StringBuilder().AppendLine("Option 'p:project' parse error. option is required but was not specified.").ToString();
 
             var result = _parser.Parse(arguments);
 
@@ -151,7 +150,7 @@ namespace QBuild.Core.Tests.BuildArgumentParserTest
         {
             var arguments = new[] { "--collection", "http://tfs.dell.com:8080/tfs/collection", "--project", "foo", "--version", "12345" };
 
-            const string expected = "Option 'd:definition' parse error. option is required but was not specified.\r\n";
+            var expected = new StringBuilder().AppendLine("Option 'd:definition' parse error. option is required but was not specified.").ToString();
 
             var result = _parser.Parse(arguments);
 
@@ -193,7 +192,7 @@ namespace QBuild.Core.Tests.BuildArgumentParserTest
         {
             var arguments = new[] { "--collection", "http://tfs.dell.com:8080/tfs/collection", "--project", "foo", "--definition", "foobar" };
 
-            const string expected = "Option 'v:version' parse error. option is required but was not specified.\r\n";
+            var expected = new StringBuilder().AppendLine("Option 'v:version' parse error. option is required but was not specified.").ToString();
 
             var result = _parser.Parse(arguments);
 

@@ -13,7 +13,7 @@ namespace QBuild.Core
 
             _builder.Setup(arg => arg.Collection)
                 .As('c', "collection")
-                .WithDescription("Collection url (e.g. https://tsf.dell.com:8080/tfs/dfs).")
+                .WithDescription("Collection url (e.g. https://tfs.domain.com:8080/tfs/foo).")
                 .Required();
 
             _builder.Setup(arg => arg.ProjectName)
