@@ -2,5 +2,5 @@ language: csharp
 solution: QBuild.sln
 install:
   - sudo apt-get install mono-devel mono-gmcs
-script:
-  - ./packages/xunit.runners.1.9.2/tools/xunit.console.clr4.x86.exe ./tests/core.tests/bin/x86/Debug/qbuild.core.tests.dll
+after_success:
+  - packages/xunit.runners.1.9.2/tools/xunit.console.clr4.x86.exe tests/core.tests/bin/x86/Debug/qbuild.core.tests.dll
