@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -77,7 +78,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\libs\Core\Core.csproj">
+    <ProjectReference Include="..\..\src\core\Core.csproj">
       <Project>{D490FAC0-0B2E-4F78-8C6B-3CA2CCDB6709}</Project>
       <Name>Core</Name>
     </ProjectReference>

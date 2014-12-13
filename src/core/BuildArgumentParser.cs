@@ -5,11 +5,11 @@ namespace QBuild.Core
 {
     public class BuildArgumentParser : IArgumentParser
     {
-        private readonly IFluentCommandLineBuilder<BuildArguments> _builder;
+        private readonly IFluentCommandLineParser<BuildArguments> _builder;
 
         public BuildArgumentParser()
         {
-            _builder = new FluentCommandLineBuilder<BuildArguments>();
+            _builder = new FluentCommandLineParser<BuildArguments>();
 
             _builder.Setup(arg => arg.Collection)
                 .As('c', "collection")

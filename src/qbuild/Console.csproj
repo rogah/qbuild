@@ -73,6 +73,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentCommandLineParser">
+      <HintPath>..\..\packages\FluentCommandLineParser.1.3.0\lib\net35\FluentCommandLineParser.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.TeamFoundation.Build.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\libs\Microsoft.TeamFoundation.Build.Client.dll</HintPath>
@@ -96,7 +99,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\libs\Core\Core.csproj">
+    <ProjectReference Include="..\core\Core.csproj">
       <Project>{D490FAC0-0B2E-4F78-8C6B-3CA2CCDB6709}</Project>
       <Name>Core</Name>
     </ProjectReference>
